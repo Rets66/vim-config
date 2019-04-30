@@ -1,7 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/Users/shoretsu-t/Documents/Works/Company/Recruit/インターン1月/Dimension_reduction.md'
-let g:netrw_dirhist_2='/Users/shoretsu-t/tmp/python/create_model.py'
-let g:netrw_dirhist_3='/Users/shoretsu-t/.hyper_plugins'
-let g:netrw_dirhist_4='/Users/shoretsu-t/Documents/Archive/Note/Network/Mail'
-let g:netrw_dirhist_5='/Users/shoretsu-t/Documents/Archive/Note/Research'
