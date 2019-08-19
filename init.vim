@@ -21,6 +21,11 @@ if dein#load_state('~/.cache/dein')
   call dein#add('Shougo/deoplete.nvim')
   call dein#add('davidhalter/jedi-vim')  " python補完機能
                                          " Opening help -> ':help jedi-vim'
+  let g:jedi#completions_command = "<C-N>"
+  call dein#add('Townk/vim-autoclose')
+  call dein#add('scrooloose/nerdtree')
+  call dein#add('Shougo/unite.vim')
+  call dein#add('bronson/vim-trailing-whitespace')
   " ============ TOML file ============
   if !has('nvim')
     call dein#add('roxma/nvim-yarp')
@@ -78,3 +83,11 @@ syntax enable
 if dein#check_install()
   call dein#install()
 endif
+
+function Markdown()
+  open -a Firefox
+endfunction
+syntax enable
+
+autocmd vimenter * NERDTree
+let g:NERDTreeLimitedSyntax = 1
