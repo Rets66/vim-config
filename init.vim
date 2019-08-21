@@ -26,6 +26,9 @@ if dein#load_state('~/.cache/dein')
   call dein#add('scrooloose/nerdtree')
   call dein#add('Shougo/unite.vim')
   call dein#add('bronson/vim-trailing-whitespace')
+  call dein#add('vim-airline/vim-airline')
+  call dein#add('vim-airline/vim-airline-themes')
+  call dein#add('airblade/vim-gitgutter')
   " ============ TOML file ============
   if !has('nvim')
     call dein#add('roxma/nvim-yarp')
@@ -91,3 +94,9 @@ syntax enable
 
 autocmd vimenter * NERDTree
 let g:NERDTreeLimitedSyntax = 1
+command Nt NERDTree
+command Md '! open -a Firefox'
+
+" airline config
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
