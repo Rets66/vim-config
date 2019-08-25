@@ -29,6 +29,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('vim-airline/vim-airline')
   call dein#add('vim-airline/vim-airline-themes')
   call dein#add('airblade/vim-gitgutter')
+  call dein#add('mattn/emmet-vim')
   " ============ TOML file ============
   if !has('nvim')
     call dein#add('roxma/nvim-yarp')
