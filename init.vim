@@ -30,6 +30,8 @@ if dein#load_state('~/.cache/dein')
   call dein#add('vim-airline/vim-airline-themes')
   call dein#add('airblade/vim-gitgutter')
   call dein#add('mattn/emmet-vim')
+  call dein#add('Shougo/deoplete.nvim')
+    let g:deoplete#enable_at_startup = 1
   " ============ TOML file ============
   if !has('nvim')
     call dein#add('roxma/nvim-yarp')
@@ -44,9 +46,10 @@ endif
 
 
 filetype plugin indent on
-
-syntax on
 color dracula
+
+" Syntax
+syntax enable
 
 " Print number
 set number
@@ -77,12 +80,6 @@ set ignorecase
 " endfunction
 " set statusline+=%=\ \%{g:Data()}
 
-" Greeting Function
-function Hello()
-  echo "Hello!"
-endfunction
-syntax enable
-
 " If you want to install not installed plugins on startup.
 if dein#check_install()
   call dein#install()
@@ -91,13 +88,14 @@ endif
 function Markdown()
   open -a Firefox
 endfunction
-syntax enable
 
+" Plugin
+" NERDTree
 autocmd vimenter * NERDTree
 let g:NERDTreeLimitedSyntax = 1
 command Nt NERDTree
 command Md '! open -a Firefox'
 
-" airline config
+" airline
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
