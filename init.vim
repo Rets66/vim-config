@@ -75,6 +75,9 @@ set list
 " Ignore text case
 set ignorecase
 
+" Stop create swap file
+set noswapfile
+
 " Print Time function g:Data()
 "  return strftime("%x %H:%M")
 " endfunction
