@@ -16,22 +16,23 @@ set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 if dein#load_state('~/.cache/dein')
   call dein#begin('~/.cache/dein')
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
-
   " ============Plogins==============
+  " call dein#add('lervag/vimtex')
+	" call dein#add('dracula/vim')
   call dein#add('Shougo/unite.vim')
   call dein#add('bronson/vim-trailing-whitespace')
   call dein#add('vim-airline/vim-airline')
-  call dein#add('vim-airline/vim-airline-themes')
+  " call dein#add('vim-airline/vim-airline-themes')
   call dein#add('tpope/vim-fugitive')              " Controler of git
   call dein#add('airblade/vim-gitgutter')          " Print diff
   call dein#add('scrooloose/nerdtree')
   "call dein#add('Shougo/deoplete.nvim')
    "call deoplete#enable()
     "let g:deoplete#enable_at_startup = 1
-  "call dein#add('davidhalter/jedi-vim')  " python補完機能
-                                         " Opening help -> ':help jedi-vim'
-  "let g:jedi#completions_command = <C-N> "後で<C-N>をダブルクォーとすること
-  "call dein#add('Townk/vim-autoclose')
+  "call dein#add('davidhalter/jedi-vim')           " python補完機能
+                                                   " Opening help -> ':help jedi-vim'
+  "let g:jedi#completions_command = <C-N>          "後で<C-N>をダブルクォーとすること
+  call dein#add('Townk/vim-autoclose')
   "call dein#add('Shougo/defx.nvim')
   "call dein#add('mattn/emmet-vim')
   " ============ TOML file ============
@@ -52,6 +53,7 @@ map <C-e> <Nop>
 map <C-f> <Nop>
 inoremap <C-f> <Esc>
 cnoremap <C-f> <Esc>
+cnoremap <C-a> <C-b>
 vnoremap <C-f> <Esc>
 tnoremap <C-f> <C-\><C-n>
 nnoremap <Space> :
@@ -62,8 +64,10 @@ cabbrev : vterm vert terminal
 cabbrev : bterm bo terminal
 cabbrev : tterm top terminal
 
-filetype plugin indent on
+filetype plugin on
 
+" General
+set ttimeoutlen=50
 
 " colorscheme
 color dracula
@@ -80,6 +84,12 @@ set tabstop=2
 
 " Use Visual Bell
 set visualbell
+
+set cursorline
+highlight CursorLine cterm=underline ctermfg=NONE ctermbg=NONE  " Underline
+
+" Window complement
+set wildmenu
 
 " Show Title
 set title
@@ -123,3 +133,17 @@ command Nd NERDTree
 " airline
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
+" let g:airline_theme = 'angr'
+
+function! s:SetDefault(var, val)
+  if !exists(a:var)
+    execute 'let ' . a:var . '=' . string(a:val)
+  endif
+endfunction
+
+"" Compilation is running and continuous compilation is on
+"call s:SetDefault( 'g:airline#extensions#vimtex#continuous', "c")
+"" Viewer is opened
+"call s:SetDefault( 'g:airline#extensions#vimtex#viewer',     "v")
+"let g:vimtex_compiler_progname = 'nvr'
+" let g:vimtex_compiler_latexmk = {'continuous' : 0, 'options' : '-pdfdvi' }
