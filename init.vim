@@ -147,3 +147,7 @@ endfunction
 "call s:SetDefault( 'g:airline#extensions#vimtex#viewer',     "v")
 "let g:vimtex_compiler_progname = 'nvr'
 " let g:vimtex_compiler_latexmk = {'continuous' : 0, 'options' : '-pdfdvi' }
+
+" Latex
+" To recognize all .tex file to latex
+let g:tex_flavor='latex'
