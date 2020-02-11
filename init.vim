@@ -18,11 +18,10 @@ if dein#load_state('~/.cache/dein')
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
   " ============Plogins==============
   " call dein#add('lervag/vimtex')
-	" call dein#add('dracula/vim')
   call dein#add('Shougo/unite.vim')
   call dein#add('bronson/vim-trailing-whitespace')
   call dein#add('vim-airline/vim-airline')
-  " call dein#add('vim-airline/vim-airline-themes')
+  call dein#add('vim-airline/vim-airline-themes')
   call dein#add('tpope/vim-fugitive')              " Controler of git
   call dein#add('airblade/vim-gitgutter')          " Print diff
   call dein#add('scrooloose/nerdtree')
@@ -33,6 +32,9 @@ if dein#load_state('~/.cache/dein')
                                                    " Opening help -> ':help jedi-vim'
   "let g:jedi#completions_command = <C-N>          "後で<C-N>をダブルクォーとすること
   call dein#add('Townk/vim-autoclose')
+  call dein#add('vim-scripts/vim-auto-save')
+"	call dein#add('xuhdev/vim-latex-live-preview')
+  "call dein#add('ryanoasis/vim-devicons')
   "call dein#add('Shougo/defx.nvim')
   "call dein#add('mattn/emmet-vim')
   " ============ TOML file ============
@@ -45,6 +47,7 @@ if dein#load_state('~/.cache/dein')
   call dein#end()
   call dein#save_state()
 endif
+
 " ============ End of dein.vim ============
 
 
@@ -56,7 +59,7 @@ cnoremap <C-f> <Esc>
 cnoremap <C-a> <C-b>
 vnoremap <C-f> <Esc>
 tnoremap <C-f> <C-\><C-n>
-nnoremap <Space> :
+nnoremap b :
 
 " Alias
 cabbrev : vsb vert sbuffer
@@ -86,13 +89,17 @@ set tabstop=2
 set visualbell
 
 set cursorline
-highlight CursorLine cterm=underline ctermfg=NONE ctermbg=NONE  " Underline
+highlight cursorline cterm=bold
+highlight cursorline cterm=underline
 
 " Window complement
 set wildmenu
 
 " Show Title
 set title
+
+" clipboard
+set clipboard+=unnamedplus
 
 " Setting Language
 let $LANG = 'en_US.UTF-8'
@@ -125,15 +132,20 @@ endif
 " Plugin
 " NERDTree
 command Nd NERDTree
-
 "autocmd vimenter * NERDTree
 "let g:NERDTreeLimitedSyntax = 1
 "let g:NERDTreeShowBookmarks=1
+"let g:NERDTreeDirArrows = 1
+"let g:webdevicons_conceal_nerdtree_brackets = 1
+"let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
+"let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+"let g:DevIconsEnableFoldersOpenClose = 1
+"set guifont='font-hack-nerd-font'
 
 " airline
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
-" let g:airline_theme = 'angr'
+let g:airline_theme = 'angr'
 
 function! s:SetDefault(var, val)
   if !exists(a:var)
@@ -151,3 +163,8 @@ endfunction
 " Latex
 " To recognize all .tex file to latex
 let g:tex_flavor='latex'
+
+" vim-auto-save
+let g:auto_save = 1
+"let g:rainbow_active = 1
+let g:livepreview_previewer = 'skim'
