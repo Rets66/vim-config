@@ -3,16 +3,40 @@
 " Editor : Neovim
 " Manager : dein.vim
 
+" Add the dein installation directory into runtimepath
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
-" Setting of dein.vim
+" Define path where 'dein.vim' is install
+let s:dein_dir = expand('~/.cache/dein')
+" Define path where toml file is
+let s:toml_dir = expand('~/.config/nvim')
+
+" Set 'dein.vim' configuration
 if &compatible
   set nocompatible
 endif
 
-" Add the dein installation directory into runtimepath
-set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+" Loading configuration
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
 
-" Setting
+  " Load Plugin from file
+  let s:toml = s:toml_dir . '/dein.toml'
+  call dein#laod_toml(s:toml, {'lazy': 0})
+
+  let s:lazy_toml = s:toml_dir . '/dein.toml'
+  call dein#laod_toml(s:lazy_toml, {'lazy': 1})
+
+  " Closing
+  call dein#end()
+  call dein#save_state()
+endif
+
+" Install plugins if not
+if dein#check_install()
+  call dein#install()
+endif
+
 if dein#load_state('~/.cache/dein')
   call dein#begin('~/.cache/dein')
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
