@@ -1,14 +1,14 @@
-" ============ Infomation ============
+" Infomation
 " Auher : Rets66
-" Editor : nvim
+" Editor : Neovim
 " Manager : dein.vim
-" ====================================
 
 
-" ============ Setting of dein.vim ============
+" Setting of dein.vim
 if &compatible
   set nocompatible
 endif
+
 " Add the dein installation directory into runtimepath
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
@@ -16,7 +16,7 @@ set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 if dein#load_state('~/.cache/dein')
   call dein#begin('~/.cache/dein')
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
-  " ============Plogins==============
+  " Plogins
   " call dein#add('lervag/vimtex')
   call dein#add('Shougo/unite.vim')
   call dein#add('bronson/vim-trailing-whitespace')
@@ -25,19 +25,15 @@ if dein#load_state('~/.cache/dein')
   call dein#add('tpope/vim-fugitive')              " Controler of git
   call dein#add('airblade/vim-gitgutter')          " Print diff
   call dein#add('scrooloose/nerdtree')
-  "call dein#add('Shougo/deoplete.nvim')
-   "call deoplete#enable()
-    "let g:deoplete#enable_at_startup = 1
-  "call dein#add('davidhalter/jedi-vim')           " python補完機能
-                                                   " Opening help -> ':help jedi-vim'
-  "let g:jedi#completions_command = <C-N>          "後で<C-N>をダブルクォーとすること
   call dein#add('Townk/vim-autoclose')
   call dein#add('vim-scripts/vim-auto-save')
-"	call dein#add('xuhdev/vim-latex-live-preview')
-  "call dein#add('ryanoasis/vim-devicons')
-  "call dein#add('Shougo/defx.nvim')
+  call dein#add('junegunn/fzf', {'build': './install --all'})
+  call dein#add('junegunn/fzf.vim')
+  "call dein#add('fatih/vim-go')
+  call dein#add('iamcco/markdown-preview.nvim', {'on_ft': ['markdown', 'pandoc.markdown', 'rmd'],
+					\ 'build': 'sh -c "cd app & yarn install"' })
   "call dein#add('mattn/emmet-vim')
-  " ============ TOML file ============
+  " TOML file
   if !has('nvim')
     call dein#add('roxma/nvim-yarp')
     call dein#add('roxma/vim-hug-neovim-rpc')
@@ -48,7 +44,7 @@ if dein#load_state('~/.cache/dein')
   call dein#save_state()
 endif
 
-" ============ End of dein.vim ============
+" End of dein.vim
 
 
 " Keymap
@@ -60,6 +56,8 @@ cnoremap <C-a> <C-b>
 vnoremap <C-f> <Esc>
 tnoremap <C-f> <C-\><C-n>
 nnoremap b :
+nnoremap <silent> <C-e> :Files<CR>
+nnoremap <silent> <C-n> :terminal<CR>
 
 " Alias
 cabbrev : vsb vert sbuffer
@@ -167,4 +165,5 @@ let g:tex_flavor='latex'
 " vim-auto-save
 let g:auto_save = 1
 "let g:rainbow_active = 1
-let g:livepreview_previewer = 'skim'
+
+call map(dein#check_clean(), "delete(v:val, 'rf')")
