@@ -103,7 +103,8 @@ set splitright
 
 " Terminal Mode configure
 autocmd TermOpen * setlocal norelativenumber
-autocmd TermOpen * setlocal nonumber         " When term opens, stop number
+" When term opens, stop number
+autocmd TermOpen * setlocal nonumber
 
 " If you want to install not installed plugins on startup.
 if dein#check_install()
@@ -112,14 +113,6 @@ endif
 
 " NERDTree
 command Nd NERDTree
-"autocmd vimenter * NERDTree
-"let g:NERDTreeLimitedSyntax = 1
-"let g:NERDTreeShowBookmarks=1
-"let g:NERDTreeDirArrows = 1
-"let g:webdevicons_conceal_nerdtree_brackets = 1
-"let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
-"let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-"let g:DevIconsEnableFoldersOpenClose = 1
 
 " airline
 let g:airline_left_sep = ''
