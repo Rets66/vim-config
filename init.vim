@@ -1,55 +1,37 @@
-" ============ Infomation ============
+" Infomation
 " Auher : Rets66
-" Editor : nvim
+" Editor : Neovim
 " Manager : dein.vim
-" ====================================
 
-
-" ============ Setting of dein.vim ============
-if &compatible
-  set nocompatible
-endif
 " Add the dein installation directory into runtimepath
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
-" Setting
-if dein#load_state('~/.cache/dein')
-  call dein#begin('~/.cache/dein')
-  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
-  " ============Plogins==============
-  " call dein#add('lervag/vimtex')
-  call dein#add('Shougo/unite.vim')
-  call dein#add('bronson/vim-trailing-whitespace')
-  call dein#add('vim-airline/vim-airline')
-  call dein#add('vim-airline/vim-airline-themes')
-  call dein#add('tpope/vim-fugitive')              " Controler of git
-  call dein#add('airblade/vim-gitgutter')          " Print diff
-  call dein#add('scrooloose/nerdtree')
-  "call dein#add('Shougo/deoplete.nvim')
-   "call deoplete#enable()
-    "let g:deoplete#enable_at_startup = 1
-  "call dein#add('davidhalter/jedi-vim')           " python補完機能
-                                                   " Opening help -> ':help jedi-vim'
-  "let g:jedi#completions_command = <C-N>          "後で<C-N>をダブルクォーとすること
-  call dein#add('Townk/vim-autoclose')
-  call dein#add('vim-scripts/vim-auto-save')
-"	call dein#add('xuhdev/vim-latex-live-preview')
-  "call dein#add('ryanoasis/vim-devicons')
-  "call dein#add('Shougo/defx.nvim')
-  "call dein#add('mattn/emmet-vim')
-  " ============ TOML file ============
-  if !has('nvim')
-    call dein#add('roxma/nvim-yarp')
-    call dein#add('roxma/vim-hug-neovim-rpc')
-  endif
+" Define the path
+let s:dein_dir = expand('~/.cache/dein')
+let s:toml_dir = expand('~/.config/nvim')
 
-  " End of the setting
+" Set 'dein.vim' configuration
+if &compatible
+  set nocompatible
+endif
+
+" Loading configuration
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
+
+  " Load Plugin from file
+  call dein#laod_toml(s:toml_dir . '/dein.toml', {'lazy': 0})
+  call dein#laod_toml(s:toml_dir . '/lazy_dein.toml', {'lazy': 1})
+
+  " Closing
   call dein#end()
   call dein#save_state()
 endif
 
-" ============ End of dein.vim ============
-
+" Install plugins if not
+if dein#check_install()
+  call dein#install()
+endif
 
 " Keymap
 map <C-e> <Nop>
@@ -60,6 +42,8 @@ cnoremap <C-a> <C-b>
 vnoremap <C-f> <Esc>
 tnoremap <C-f> <C-\><C-n>
 nnoremap b :
+nnoremap <silent> <C-e> :Files<CR>
+nnoremap <silent> <C-n> :terminal<CR>
 
 " Alias
 cabbrev : vsb vert sbuffer
@@ -77,9 +61,6 @@ color dracula
 
 " Syntax
 syntax enable
-
-" Print number
-" set number
 
 " Tab size
 set sw=1
@@ -122,25 +103,16 @@ set splitright
 
 " Terminal Mode configure
 autocmd TermOpen * setlocal norelativenumber
-autocmd TermOpen * setlocal nonumber         " When term opens, stop number
+" When term opens, stop number
+autocmd TermOpen * setlocal nonumber
 
 " If you want to install not installed plugins on startup.
 if dein#check_install()
   call dein#install()
 endif
 
-" Plugin
 " NERDTree
 command Nd NERDTree
-"autocmd vimenter * NERDTree
-"let g:NERDTreeLimitedSyntax = 1
-"let g:NERDTreeShowBookmarks=1
-"let g:NERDTreeDirArrows = 1
-"let g:webdevicons_conceal_nerdtree_brackets = 1
-"let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
-"let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-"let g:DevIconsEnableFoldersOpenClose = 1
-"set guifont='font-hack-nerd-font'
 
 " airline
 let g:airline_left_sep = ''
@@ -153,18 +125,11 @@ function! s:SetDefault(var, val)
   endif
 endfunction
 
-"" Compilation is running and continuous compilation is on
-"call s:SetDefault( 'g:airline#extensions#vimtex#continuous', "c")
-"" Viewer is opened
-"call s:SetDefault( 'g:airline#extensions#vimtex#viewer',     "v")
-"let g:vimtex_compiler_progname = 'nvr'
-" let g:vimtex_compiler_latexmk = {'continuous' : 0, 'options' : '-pdfdvi' }
-
 " Latex
 " To recognize all .tex file to latex
 let g:tex_flavor='latex'
 
 " vim-auto-save
 let g:auto_save = 1
-"let g:rainbow_active = 1
-let g:livepreview_previewer = 'skim'
+
+call map(dein#check_clean(), "delete(v:val, 'rf')")
