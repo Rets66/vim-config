@@ -6,9 +6,8 @@
 " Add the dein installation directory into runtimepath
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
-" Define path where 'dein.vim' is install
+" Define the path
 let s:dein_dir = expand('~/.cache/dein')
-" Define path where toml file is
 let s:toml_dir = expand('~/.config/nvim')
 
 " Set 'dein.vim' configuration
@@ -21,11 +20,8 @@ if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
 
   " Load Plugin from file
-  let s:toml = s:toml_dir . '/dein.toml'
-  call dein#laod_toml(s:toml, {'lazy': 0})
-
-  let s:lazy_toml = s:toml_dir . '/dein.toml'
-  call dein#laod_toml(s:lazy_toml, {'lazy': 1})
+  call dein#laod_toml(s:toml_dir . '/dein.toml', {'lazy': 0})
+  call dein#laod_toml(s:toml_dir . '/lazy_dein.toml', {'lazy': 1})
 
   " Closing
   call dein#end()
@@ -36,40 +32,6 @@ endif
 if dein#check_install()
   call dein#install()
 endif
-
-if dein#load_state('~/.cache/dein')
-  call dein#begin('~/.cache/dein')
-  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
-  " Plogins
-  " call dein#add('lervag/vimtex')
-  call dein#add('Shougo/unite.vim')
-  call dein#add('bronson/vim-trailing-whitespace')
-  call dein#add('vim-airline/vim-airline')
-  call dein#add('vim-airline/vim-airline-themes')
-  call dein#add('tpope/vim-fugitive')              " Controler of git
-  call dein#add('airblade/vim-gitgutter')          " Print diff
-  call dein#add('scrooloose/nerdtree')
-  call dein#add('Townk/vim-autoclose')
-  call dein#add('vim-scripts/vim-auto-save')
-  call dein#add('junegunn/fzf', {'build': './install --all'})
-  call dein#add('junegunn/fzf.vim')
-  "call dein#add('fatih/vim-go')
-  call dein#add('iamcco/markdown-preview.nvim', {'on_ft': ['markdown', 'pandoc.markdown', 'rmd'],
-					\ 'build': 'sh -c "cd app & yarn install"' })
-  "call dein#add('mattn/emmet-vim')
-  " TOML file
-  if !has('nvim')
-    call dein#add('roxma/nvim-yarp')
-    call dein#add('roxma/vim-hug-neovim-rpc')
-  endif
-
-  " End of the setting
-  call dein#end()
-  call dein#save_state()
-endif
-
-" End of dein.vim
-
 
 " Keymap
 map <C-e> <Nop>
@@ -99,9 +61,6 @@ color dracula
 
 " Syntax
 syntax enable
-
-" Print number
-" set number
 
 " Tab size
 set sw=1
@@ -151,7 +110,6 @@ if dein#check_install()
   call dein#install()
 endif
 
-" Plugin
 " NERDTree
 command Nd NERDTree
 "autocmd vimenter * NERDTree
@@ -162,7 +120,6 @@ command Nd NERDTree
 "let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 "let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 "let g:DevIconsEnableFoldersOpenClose = 1
-"set guifont='font-hack-nerd-font'
 
 " airline
 let g:airline_left_sep = ''
@@ -174,13 +131,6 @@ function! s:SetDefault(var, val)
     execute 'let ' . a:var . '=' . string(a:val)
   endif
 endfunction
-
-"" Compilation is running and continuous compilation is on
-"call s:SetDefault( 'g:airline#extensions#vimtex#continuous', "c")
-"" Viewer is opened
-"call s:SetDefault( 'g:airline#extensions#vimtex#viewer',     "v")
-"let g:vimtex_compiler_progname = 'nvr'
-" let g:vimtex_compiler_latexmk = {'continuous' : 0, 'options' : '-pdfdvi' }
 
 " Latex
 " To recognize all .tex file to latex
