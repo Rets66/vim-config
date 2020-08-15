@@ -131,6 +131,5 @@ let g:tex_flavor='latex'
 
 " vim-auto-save
 let g:auto_save = 1
-"let g:rainbow_active = 1
 
 call map(dein#check_clean(), "delete(v:val, 'rf')")
